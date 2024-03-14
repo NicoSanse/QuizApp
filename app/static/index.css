@@ -1,0 +1,53 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.nav-sidebar {
+    background-color: #343a40;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 0;
+    color: #fff;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    transition: all 0.3s;
+}
+
+.nav-sidebar a {
+    color: #adb5bd;
+}
+
+.nav-sidebar a:hover {
+    color: #fff;
+}
+
+.main-content {
+    max-width: 800px;
+    background-color: #f8f9fa;
+    padding-top: 16px;
+    padding-left: 60px;
+    padding-right: 100px;
+    border-radius: 0;
+    transition: margin-left 0.3s, width 0.3s;
+}
+
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+    border-radius: 0;
+    margin-bottom: 20px;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.nav-toggle-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+}
