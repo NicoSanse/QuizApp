@@ -9,16 +9,16 @@ app.secret_key = 'your secret key'
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_PASSWORD'] = '
 app.config['MYSQL_DB'] = 'login'
 
 mysql = MySQL(app)
-cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
 
 
 ###### 1. Welcome page ######
 @app.route('/')
 def home():
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     return render_template('welcome.html')
 
 
