@@ -13,26 +13,35 @@
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <h1 class="text-center">Index</h1>
+                <br>
+                <br>
                 <div class="card">
                     <div class="card-body">
                         {% if error %}
-                        <div class="alert alert-danger" role="alert" text="{{error}}"></div>
+                        <div class="alert alert-danger" role="alert">{{error}}</div>
                         {% endif %}
                         <div class="col text-center">
-                            <h1 class="bottom">Hi {{session.user.nome}}!</h1>
-                            </br> Welcome to the index page</br>
+                            <h1>Hi {{session.user.nome}}!</h1>
+                            <div> Welcome to the index page</div>
+                            <br>
                             <div class="col text-center">
                                 <p>Clicca qui per fare il quiz</p>
                                 <a href="{{ url_for('quiz') }}" class="btn btn-link">Quiz</a>
                             </div>
                         </div>
-
+                        <br>
+                        <br>
+                        <br>
                         <div class="col text-center">
                             <form action="{{ url_for('logout') }}" method="post">
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary">Logout</button>
+                                    <button type="submit" class="btn btn-secondary">Logout</button>
                                 </div>
                             </form>
+                        </div>
+
+                        <div style="position: absolute; top: 10px; right: 10px;">
+                            <p>Best Score: {{session.user.score}} %</p>
                         </div>
                         
                     </div>

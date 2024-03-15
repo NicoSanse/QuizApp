@@ -16,7 +16,7 @@
                     <div class="card-body">
                         <h1 class="text-center">Login</h1>
                         {% if error %}
-                        <div class="alert alert-danger" role="alert" text="{{error}}"></div>
+                        <div class="alert alert-danger" role="alert">{{error}}</div>
                         {% endif %}
                         <form action="{{ url_for('login_post') }}" method="post">
                             <div class="form-group">

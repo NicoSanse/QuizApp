@@ -7,41 +7,96 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="../static/access.css">
 </head>
+
+
 <body>
-    <h1>Quiz</h1>
-    <form>
-        <!-- Question about the user's name -->
-        <h2>Question 1: What is your name?</h2>
-        <input type="text" name="username">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h1>Quiz</h1>
+                        <form action="{{ url_for('quiz') }}" method="post">
+                            <h2>Qual è la libreria più usata per l'apprendimento automatico in Python?</h2>
+                            <input type="radio" name="question1" value="A"> Tensorflow<br>
+                            <input type="radio" name="question1" value="B"> Scipy<br>
+                            <input type="radio" name="question1" value="C"> Django<br>
+                            <input type="radio" name="question1" value="D"> Flask<br>
+                        
+                            <h2>Quale tipo di modello si usa tipicamente per il riconoscimento di immagini?</h2>
+                            <input type="radio" name="question2" value="A"> Alberi di decisione<br>
+                            <input type="radio" name="question2" value="B"> Reti neurali convoluzionali<br>
+                            <input type="radio" name="question2" value="C"> Support Vector Machine<br>
+                            <input type="radio" name="question2" value="D"> Naive Bayes<br>
 
-        <!-- First question with multiple choice -->
-        <h2>Question 2: What is your favorite color?</h2>
-        <input type="radio" name="question1" value="red"> Red<br>
-        <input type="radio" name="question1" value="blue"> Blue<br>
-        <input type="radio" name="question1" value="green"> Green<br>
+                            <h2>Cosa significa overfitting?</h2>
+                            <input type="radio" name="question3" value="A"> Il modello è stato addestrato poco e sbaglia <br>
+                            <input type="radio" name="question3" value="B"> Il modello è stato addestrato troppo e non sa più generalizzare<br>
+                            <input type="radio" name="question3" value="C"> Il modello è stato addestrato abbastanza e predice in modo fedele<br>
+                            <input type="radio" name="question3" value="D"> significa che il dataset presenta valori mancanti<br>
 
-        <!-- Second question with multiple choice -->
-        <h2>Question 3: What is your favorite animal?</h2>
-        <input type="radio" name="question2" value="dog"> Dog<br>
-        <input type="radio" name="question2" value="cat"> Cat<br>
-        <input type="radio" name="question2" value="parrot"> Parrot<br>
+                            <h2>Cosa cambia tra apprendimento supervisionato e non supervisionato?</h2>
+                            <input type="radio" name="question4" value="A"> Il primo richiede un dataset etichettato, il secondo no<br>
+                            <input type="radio" name="question4" value="B"> Il primo richiede un dataset non etichettato, il secondo sì<br>
+                            <input type="radio" name="question4" value="C"> Non cambia nulla<br>
+                            <input type="radio" name="question4" value="D"> significa che non serve fare analisi esplorativa<br>
 
-        <!-- Third question with a text input -->
-        <h2>Question 4: Describe your hobbies or interests:</h2>
-        <textarea name="question3" rows="4" cols="50"></textarea>
+                            <h2>Cos'è la PCA?</h2>
+                            <input type="radio" name="question5" value="A"> Una tecnica di riduzione della dimensionalità del dataset<br>
+                            <input type="radio" name="question5" value="B"> Una tecnica che aumenta la dimensionalità del dataset<br>
+                            <input type="radio" name="question5" value="C"> Una tecnica che serve specificatamente a ridurre l'overfitting<br>
+                            <input type="radio" name="question5" value="D"> Una tecnica che serve specificatamente a bilanciare il dataset<br>
 
-        <br>
-        <input type="submit" value="Submit Answers">
+                            <h2>Quali strategie si adottano in caso di dataset sbilanciato?</h2>
+                            <input type="radio" name="question6" value="A"> Niente, non è un problema<br>
+                            <input type="radio" name="question6" value="B"> Si usa la PCA<br>
+                            <input type="radio" name="question6" value="C"> Si usano tecniche di oversampling o undersampling<br>
+                            <input type="radio" name="question6" value="D"> Il problema non è stato ancora risolto<br>
+                        
+                            <h2>Quali strategie si adottano in caso di dataset con valori mancanti o nulli?</h2>
+                            <input type="radio" name="question7" value="A"> Niente, non è un problema<br>
+                            <input type="radio" name="question7" value="B"> Si possono rimpiazzare i valori mancanti con la moda oppure eliminare le istanze con valori nulli<br>
+                            <input type="radio" name="question7" value="C"> Si possono rimpiazzare con outliers<br>
+                            <input type="radio" name="question7" value="D"> Si usa la PCA<br>
 
-        <!-- User's best score in the top right corner -->
-        <div style="position: absolute; top: 10px; right: 10px;">
-            <p>Best Score: 100%</p>
+                            <h2>A cosa serve la funzione di attivazione nelle reti neurali?</h2>
+                            <input type="radio" name="question8" value="A"> A Niente<br>
+                            <input type="radio" name="question8" value="B"> A evitare l'overfitting<br>
+                            <input type="radio" name="question8" value="C"> A normalizzare i dati in ingresso<br>
+                            <input type="radio" name="question8" value="D"> A introdurre non linearità <br>
+
+                            <h2>Quale delle seguenti opzioni riduce l'overfitting di un modello (senza agire direttamente su un modello)?</h2>
+                            <input type="radio" name="question9" value="A"> Tecniche di cross validation<br>
+                            <input type="radio" name="question9" value="B"> Feature engineering<br>
+                            <input type="radio" name="question9" value="C"> Data visualization<br>
+                            <input type="radio" name="question9" value="D"> Non si può fare senza agire sul modello<br>
+
+                            <h2>Quali delle seguenti sono tecniche di valutazione usate in ambito machine learning?</h2>
+                            <input type="radio" name="question10" value="A"> PCA, undersampling<br>
+                            <input type="radio" name="question10" value="B"> oversampling, Data visualization<br>
+                            <input type="radio" name="question10" value="C"> Cross validation, Confusion matrix<br>
+                            <input type="radio" name="question10" value="D"> Feature engineering, K-means<br>
+
+                            <br>
+                            <input type="submit" value="Submit Answers">
+                        </form>
+                        <!-- User's best score in the top right corner -->
+                        <div style="position: absolute; top: 10px; right: 10px;">
+                            <p>Best Score: {{session.user.score}}%</p>
+                        </div>
+                        <br>
+                        <br>
+
+                        <!-- Footer with information about the author -->
+                        <footer>
+                            Nicolò Sansevrino
+                        </footer>
+
+
+                    </div>
+                </div>
+            </div>
         </div>
-    </form>
-
-    <!-- Footer with information about the author -->
-    <footer>
-        Here information about author
-    </footer>
+    </div>
 </body>
 </html>
