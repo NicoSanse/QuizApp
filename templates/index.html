@@ -2,20 +2,31 @@
 
 <head>
     <meta charset="UTF-8">
-    <title> Index </title>
-    <link rel="stylesheet" href="../static/index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/access.css">
 </head>
 
-<body></br></br></br></br></br>
-    <div>
-        <div class="border">
-            <div class="header">
-                <h1 class="word">Index</h1>
-            </div></br></br></br>
-            <h1 class="bottom">
-                Hi {{session.username}}!!</br></br> Welcome to the index page...
-            </h1></br></br></br>
-            <a href="{{ url_for('logout') }}" class="btn">Logout</a>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="text-center">Login</h1>
+                        {% if error %}
+                        <div class="alert alert-danger" role="alert" text="{{error}}"></div>
+                        {% endif %}
+                        <div class="border">
+                        <h1 class="word">Index</h1>
+                        <h1 class="bottom">Hi {{session.username}}!!</h1>
+                        </br> Welcome to the index page...</br>
+                        <a href="{{ url_for('quiz') }}" class="btn">Quiz page</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
