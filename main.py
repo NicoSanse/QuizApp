@@ -1,13 +1,14 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from classes.user import User
+from classes.utils import init, add_user, get_users
 import json
-import os
 
 app = Flask(__name__)
 
 ###### 1. Welcome page ######
 @app.route('/')
 def home():
+    init()
     return render_template('welcome.html')
 
 
@@ -38,33 +39,16 @@ def register_post():
         # controlliamo che le due password siano uguali
         if password != password2:
             return render_template('register.html', error='Le due password non corrispondono')
-        else:
-            # controlliamo che l'utente non esista già
-            with open('accounts.json', 'r') as f:
-                if os.stat('accounts.json').st_size == 0:  # se il file è vuoto
-                    accounts_in_db = {}  
-                else:
-                    accounts_in_db = json.load(f)  
-                    #accounts_in_db = json.loads(accounts_in_db)
-
-            if new_user_json in accounts_in_db:
+        else: 
+            # controlliamo se l'utente esiste già
+            if new_user_json in get_users():
                 return render_template('register.html', error='L\'utente esiste già')
             # inseriamo l'utente nel db
             else:
-                # se il file è vuoto scrivo il json direttamente
-                if len(accounts_in_db) == 0:
-                    with open('accounts.json', 'w') as f:
-                        json.dump(new_user_json, f)
-                else:
-                # altrimenti prima di appendere il nuovo utente al file devo scrivere una virgola
-                # salvo il nuovo utente nel file json persistente
-                    with open('accounts.json', 'a') as f:
-                        # rimuovo ultimo carattere del file
-                        f.seek
-                        f.write(',')
-                        json.dump(new_user_json, f)
+                add_user(new_user_json)
 
-    return render_template('index.html')
+
+    return redirect(url_for('index'))
 
 
 
@@ -83,18 +67,17 @@ def login_post():
     existing_account = None
 
     # estraiamo l'utente dal db
-    with open('accounts.json', 'r') as f:
-        accounts_in_db = json.load(f)
+    accounts_in_db = get_users()
 
     for account in accounts_in_db:
-        if account['id']['email'] == email:
+        if account['email'] == email:
             existing_account = account
             break
 
     # verifichiamo l'esistenza dell'utente
     if existing_account:
         # verifichiamo la correttezza della password
-        if existing_account['id']['password'] == password:
+        if existing_account['password'] == password:
             session['user'] = existing_account
             return redirect(url_for('index'))
         # se la password è sbagliata ritorniamo un errore
@@ -112,7 +95,7 @@ def index():
     if 'user' in session:
         return render_template('index.html')
     else:
-        return redirect(url_for('login'))
+        return redirect(url_for('welcome'))
 
 
 ####### 5. Quiz page ######
@@ -121,10 +104,21 @@ def quiz():
     if 'user' in session:
         return render_template('quiz.html')
     else:
-        return redirect(url_for('login'))
+        return redirect(url_for('welcome'))
+
+@app.route('/quiz', methods=['POST'])
+def quiz_post():
+    # to finish
+    return ''
 
 
+####### 6. Logout page ######
+@app.route('/logout', methods=['POST'])
+def logout():
+    session.pop('user', None)
+    return redirect(url_for('welcome'))
 
-
+####### Run app ######
 if __name__ == '__main__':
+    app.secret_key = 'your secret key'
     app.run(debug=True)

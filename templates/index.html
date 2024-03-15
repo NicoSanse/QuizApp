@@ -12,18 +12,29 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 offset-md-3">
+                <h1 class="text-center">Index</h1>
                 <div class="card">
                     <div class="card-body">
-                        <h1 class="text-center">Login</h1>
                         {% if error %}
                         <div class="alert alert-danger" role="alert" text="{{error}}"></div>
                         {% endif %}
-                        <div class="border">
-                        <h1 class="word">Index</h1>
-                        <h1 class="bottom">Hi {{session.username}}!!</h1>
-                        </br> Welcome to the index page...</br>
-                        <a href="{{ url_for('quiz') }}" class="btn">Quiz page</a>
+                        <div class="col text-center">
+                            <h1 class="bottom">Hi {{session.user.nome}}!</h1>
+                            </br> Welcome to the index page</br>
+                            <div class="col text-center">
+                                <p>Clicca qui per fare il quiz</p>
+                                <a href="{{ url_for('quiz') }}" class="btn btn-link">Quiz</a>
+                            </div>
                         </div>
+
+                        <div class="col text-center">
+                            <form action="{{ url_for('logout') }}" method="post">
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary">Logout</button>
+                                </div>
+                            </form>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
